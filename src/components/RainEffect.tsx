@@ -157,7 +157,7 @@ export default function RainEffect({ mousePosRef, isHoveringRef }: Props) {
       const isHovering = isHoveringRef.current
       const hasEntered = mx >= 0
 
-      // Canopy center (used to skip drops inside dome)
+      // Canopy center (used to skip drops in rain shadow)
       const umbCX = mx
       const umbCY = my - POLE_HEIGHT
 
@@ -166,14 +166,22 @@ export default function RainEffect({ mousePosRef, isHoveringRef }: Props) {
         const nextX = drop.x + dx * drop.speed
         const nextY = drop.y + dy * drop.speed
 
-        // Skip drawing if the drop tip sits inside the open dome
-        const inDome =
-          hasEntered &&
-          isHovering &&
-          drop.y <= umbCY &&
-          (drop.x - umbCX) ** 2 + (drop.y - umbCY) ** 2 < CANOPY_R ** 2
+        // Determine if this drop is sheltered by the open umbrella.
+        // Above the flat base: check if it's inside the dome circle.
+        // Below the flat base: project the drop back along the rain angle to the
+        // canopy height — if that projected x lands within the canopy radius the
+        // drop would have been intercepted before reaching its current position.
+        let inShadow = false
+        if (hasEntered && isHovering) {
+          if (drop.y < umbCY) {
+            inShadow = (drop.x - umbCX) ** 2 + (drop.y - umbCY) ** 2 < CANOPY_R ** 2
+          } else {
+            const projX = drop.x - (drop.y - umbCY) * (dx / dy)
+            inShadow = Math.abs(projX - umbCX) < CANOPY_R
+          }
+        }
 
-        if (!inDome) {
+        if (!inShadow) {
           ctx.beginPath()
           ctx.moveTo(drop.x, drop.y)
           ctx.lineTo(drop.x - dx * drop.length, drop.y - dy * drop.length)
