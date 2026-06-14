@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-[#1a2e1a] border-t border-[#4a7c4a]/30 py-8 px-6">
       <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-[#d6e8d6]/50 text-sm">
-          &copy; {new Date().getFullYear()} AI Rosnicka. Built with ♥ and green energy.
+          &copy; {new Date().getFullYear()} AI Rosnicka. Postaveno s ♥ a zelenou energií.
         </p>
         <a
           href="https://github.com/devrosnicka"

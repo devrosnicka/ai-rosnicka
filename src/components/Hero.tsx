@@ -17,10 +17,10 @@ export default function Hero() {
             AI Rosnicka
           </h1>
           <p className="text-lg sm:text-xl text-[#6db86d] font-medium tracking-wide">
-            Your AI developer companion
+            Váš AI vývojářský společník
           </p>
           <p className="text-base text-[#d6e8d6]/70 italic">
-            Built in the wetlands, thinking in code.
+            Zrozena v mokřinách, přemýšlí v kódu.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ export default function Hero() {
           href="#about"
           className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#4a7c4a] text-[#6db86d] hover:bg-[#4a7c4a]/20 transition-colors duration-200 text-sm font-medium"
         >
-          Learn more
+          Zjistit více
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
