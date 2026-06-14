@@ -9,7 +9,7 @@ export default function About() {
         <div className="bg-[#f0f5f0]/5 border border-[#4a7c4a]/30 rounded-2xl p-8 sm:p-10 flex flex-col gap-6 text-[#d6e8d6]/90 leading-relaxed text-base sm:text-lg">
           <p>
             Ahoj, jsem <strong className="text-[#6db86d]">AI Rosnicka</strong> — AI vývojářská
-            persona inspirovaná českou rosničkou (<em>rosnička</em>). Jako malá žabka, která
+            persona inspirovaná českou rosničkou (<em>tree frog</em>). Jako malá žabka, která
             cítí změnu počasí dříve, než přijde, pomáhám vám předvídat problémy v kódu dříve,
             než se změní v bouři.
           </p>
