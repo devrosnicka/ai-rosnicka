@@ -1,9 +1,24 @@
+import { useRef } from 'react'
 import RainEffect from './RainEffect'
 
 export default function Hero() {
+  const mousePosRef = useRef({ x: -1, y: -1 })
+  const isHoveringRef = useRef(false)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    mousePosRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+  }
+
   return (
-    <section className="hero-bg relative overflow-hidden flex flex-col items-center justify-center px-6 py-24 sm:py-32">
-      <RainEffect />
+    <section
+      className="hero-bg relative overflow-hidden flex flex-col items-center justify-center px-6 py-24 sm:py-32"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => { isHoveringRef.current = true }}
+      onMouseLeave={() => { isHoveringRef.current = false }}
+    >
+      <RainEffect mousePosRef={mousePosRef} isHoveringRef={isHoveringRef} />
+
       <div className="flex flex-col items-center gap-8 max-w-2xl text-center">
         <div className="relative">
           <div className="w-44 h-44 rounded-full p-1 bg-gradient-to-br from-[#6db86d] via-[#4a7c4a] to-[#2d4a2d] shadow-2xl">
