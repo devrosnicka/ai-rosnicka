@@ -10,10 +10,20 @@ interface Drop {
 
 const DROP_COUNT = 200
 const ANGLE = 70 * (Math.PI / 180) // near-vertical, slight wind
+const dx = Math.cos(ANGLE)
+const dy = Math.sin(ANGLE)
+
+// How far a drop drifts horizontally across the full canvas height.
+// Drops must be seeded from this far left of the canvas so the left
+// edge is covered by the time they reach the bottom.
+function xOverflow(height: number) {
+  return height * (dx / dy)
+}
 
 function initDrops(width: number, height: number): Drop[] {
+  const overflow = xOverflow(height)
   return Array.from({ length: DROP_COUNT }, () => ({
-    x: Math.random() * width,
+    x: Math.random() * (width + overflow) - overflow,
     y: Math.random() * height,
     length: 10 + Math.random() * 20,
     speed: 4 + Math.random() * 8,
@@ -32,18 +42,17 @@ export default function RainEffect() {
 
     let animId: number
     let drops: Drop[] = []
+    let overflow = 0
 
     const resize = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
+      overflow = xOverflow(canvas.height)
       drops = initDrops(canvas.width, canvas.height)
     }
 
     resize()
     window.addEventListener('resize', resize)
-
-    const dx = Math.cos(ANGLE)
-    const dy = Math.sin(ANGLE)
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -61,7 +70,7 @@ export default function RainEffect() {
 
         if (drop.y > canvas.height + drop.length) {
           drop.y = -drop.length
-          drop.x = Math.random() * canvas.width
+          drop.x = Math.random() * (canvas.width + overflow) - overflow
         }
       }
 
