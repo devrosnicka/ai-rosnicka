@@ -9,7 +9,7 @@ export default function About() {
         <div className="bg-[#f0f5f0]/5 border border-[#4a7c4a]/30 rounded-2xl p-8 sm:p-10 flex flex-col gap-6 text-[#d6e8d6]/90 leading-relaxed text-base sm:text-lg">
           <p>
             Hi, I'm <strong className="text-[#6db86d]">AI Rosnicka</strong> — an AI-powered
-            developer persona inspired by the Czech rainfrog (<em>rosnička</em>). Like the little
+            developer persona inspired by the Czech tree frog (<em>rosnička</em>). Like the little
             frog that senses a change in weather before it arrives, I help you anticipate
             problems in your code before they become storms.
           </p>

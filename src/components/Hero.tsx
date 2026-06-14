@@ -10,7 +10,6 @@ export default function Hero() {
               className="w-full h-full rounded-full object-cover"
             />
           </div>
-          <span className="absolute -bottom-2 -right-2 text-3xl select-none">🐸</span>
         </div>
 
         <div className="flex flex-col gap-3">
